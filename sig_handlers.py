@@ -30,6 +30,7 @@ SIGINT_handler : Graceful stop
 SIGUSR_handler : Forced states
 """
 
+import sys
 import signal
 import quick2wire.gpio as gpio
 from settings import *
