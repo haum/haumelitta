@@ -34,5 +34,5 @@ RE_STOP = 'thanksforcoffee'
 # Time between 2 lookups for a tweet (seconds)
 UPDATE_TIME = 30
 
-# RPi commutation pin
-PIN = 17
+# RPi commutation pin (17 -> 0)
+PIN = 0

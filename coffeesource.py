@@ -36,15 +36,23 @@ import signal
 from twitter import Twitter, OAuth
 import quick2wire.gpio as gpio
 
-from sig_handlers import *
 from settings import *
 RE_START = re.compile(RE_START)
 RE_STOP = re.compile(RE_STOP)
 
-def setup_gpio():
-    """ Setup function """
 
-    return gpio.pins.pin(PIN, direction=gpio.Out)
+def connect_api():
+
+    try:
+        api = Twitter(
+            auth=OAuth(TOKEN_KEY, TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET),
+            api_version='1.1'
+        )
+        print("Connected to the twitter API")
+        return api
+    except:
+        print("Failed to load twitter API")
+        sys.exit()
 
 
 def do_coffee(pin, api, last_id):
@@ -73,16 +81,6 @@ def do_coffee(pin, api, last_id):
 
 
 def main():
-    # let's create an instance of the api
-    try:
-        api = Twitter(
-            auth=OAuth(TOKEN_KEY, TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET),
-            api_version='1.1'
-        )
-        print("Connected to the twitter API")
-    except:
-        print("Failed to load twitter API")
-        sys.exit()
 
     def SIGINT_handler(sig, stack):
         """
@@ -116,7 +114,8 @@ def main():
     signal.signal(signal.SIGUSR2, SIGUSR_handler)
 
 
-    pin = setup_gpio()
+    # Open GPIO pin
+    pin = gpio.pins.pin(PIN, direction=gpio.Out)
     pin.open()
 
     # print instructions
@@ -144,6 +143,8 @@ Stop :
 
 CTRL-C or $ sudo kill -2 {0}""".format(os.getpid()))
 
+
+    api = connect_api()
 
     print("Entering main loop....")
     last_id = '0'
