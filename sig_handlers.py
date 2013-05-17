@@ -53,11 +53,11 @@ def SIGUSR_handler(sig, stack):
     """
 
     if sig==signal.SIGUSR1:
-        with gpio.pin(PIN, direction=gpio.Out) as p:
+        with gpio.pins.pin(PIN, direction=gpio.Out) as p:
             p.value = 1
         print('Forced state : CoffeePot ON')
     elif sig==signal.SIGUSR2:
-        with gpio.pin(PIN, direction=gpio.Out) as p:
+        with gpio.pins.pin(PIN, direction=gpio.Out) as p:
             p.value = 0
         print('Forced state : CoffeePot OFF')
 
