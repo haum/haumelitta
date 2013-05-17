@@ -60,12 +60,12 @@ def do_coffee(pin, api, last_id):
 
             if RE_START.search(mention['text']):
                 print("Hey ! Let's make coffee !")
-                with pin as p: p.value = 1
+                pin.value = 1
                 return last_id
 
             elif RE_STOP.search(mention['text']):
                 print("Yeah ! Coffee's ready !")
-                with pin as p: p.value = 0
+                pin.value = 0
                 return last_id
     else:
         print("Waiting for a tweet...")
@@ -73,11 +73,6 @@ def do_coffee(pin, api, last_id):
 
 
 def main():
-    # setup interrupt handler for SIGTERM
-    signal.signal(signal.SIGINT, SIGINT_handler)
-    signal.signal(signal.SIGUSR1, SIGUSR_handler)
-    signal.signal(signal.SIGUSR2, SIGUSR_handler)
-
     # let's create an instance of the api
     try:
         api = Twitter(
@@ -89,7 +84,40 @@ def main():
         print("Failed to load twitter API")
         sys.exit()
 
+    def SIGINT_handler(sig, stack):
+        """
+        Handler for SIGINT
+        Ensure a cleanup before exiting the program
+        """
+
+        print('Quit...')
+        pin.close()
+        sys.exit()
+
+
+    def SIGUSR_handler(sig, stack):
+        """
+        Handler for SIGUSR1 and SIGUSR2
+
+        SIGUSR1 => switch on coffee pot
+        SIGUSR2 => switch off coffee pot
+        """
+
+        if sig==signal.SIGUSR1:
+            pin.value = 1
+            print('Forced state : CoffeePot ON')
+        elif sig==signal.SIGUSR2:
+            pin.value = 0
+            print('Forced state : CoffeePot OFF')
+
+    # setup interrupt handler for SIGTERM
+    signal.signal(signal.SIGINT, SIGINT_handler)
+    signal.signal(signal.SIGUSR1, SIGUSR_handler)
+    signal.signal(signal.SIGUSR2, SIGUSR_handler)
+
+
     pin = setup_gpio()
+    pin.open()
 
     # print instructions
     print("""
