@@ -3,20 +3,20 @@ HAUMelitta
 
 HAUMelitta is a project intended to connect a coffeepot to the Internet through a Twitter account.
 
-It our modest contribution to the Web of object.
+It's our modest contribution to the Web of objects.
 
 Why this name ?
 ---------------
 
-The name in contraction of HAUM (our hackerspace) and Melitta (well-known coffepot manufacturer).
+The name is a contraction of HAUM (our hackerspace) and Melitta (well-known coffepot manufacturer).
 
-How does it works ?
+How does it work ?
 -------------------
 
-The coffeepot has its own Twitter account (@HAUMelitta) and API tokens/secrets had been generated to get updates on the
+The coffeepot has its own Twitter account (@HAUMelitta) and API tokens/secrets have been generated to get updates on the
 Pi.
 
-When a tweet containing the right keyword is emitted from one of the masters, the Pi commutes a static relay that switch
+When a tweet containing the right keyword is emitted from one of the masters, the Pi commutes a static relay that switches
 on the coffeepot.
 
 Requirements
@@ -32,13 +32,13 @@ Here's what you need...
 
 ### Software part
 
-You'll need several python modules, just grab the `setup.sh` script and run :
+You'll need several python modules, just grab the `setup.sh` script and run:
 
     $ sudo su
     # sudo apt-get install python
     # ./setup.sh
 
-Modules are :
+Modules are:
 
 - `RPi.GPIO`
 - `python-twitter`
