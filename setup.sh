@@ -11,7 +11,7 @@ easy_install -U distribute || easy_install-2.7 -U distribute
 # because it's *much* better
 easy_install -U pip || easy_install-2.7 -U pip
 
-pip install python-twitter RPi.GPIO OAuth2
+pip install python-twitter RPi.GPIO
 
 echo "This script will upgrade/install : distribute, pip, twitter, RPi.GPIO"
 
