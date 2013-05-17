@@ -115,7 +115,7 @@ Forcing states :
 ----------------
 
 - ON : $ sudo kill -10 {0}
-- ON : $ sudo kill -12 {0}
+- OFF : $ sudo kill -12 {0}
 
 Stop :
 ------
