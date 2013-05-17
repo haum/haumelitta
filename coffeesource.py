@@ -60,12 +60,12 @@ def do_coffee(pin, api, last_id):
 
             if RE_START.search(mention['text']):
                 print("Hey ! Let's make coffee !")
-                pin.value = 1
+                with pin as p: p.value = 1
                 return last_id
 
             elif RE_STOP.search(mention['text']):
                 print("Yeah ! Coffee's ready !")
-                pin.value = 0
+                with pin as p: p.value = 0
                 return last_id
     else:
         print("Waiting for a tweet...")
