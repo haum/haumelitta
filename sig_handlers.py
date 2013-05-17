@@ -31,6 +31,7 @@ SIGUSR_handler : Forced states
 """
 
 import signal
+import sys
 import RPi.GPIO as GPIO
 
 def SIGINT_handler(sig, stack):
