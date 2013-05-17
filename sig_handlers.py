@@ -31,7 +31,8 @@ SIGUSR_handler : Forced states
 """
 
 import signal
-import RPi.GPIO as GPIO
+import quick2wire.gpio as gpio
+from settings import *
 
 def SIGINT_handler(sig, stack):
     """
@@ -39,8 +40,6 @@ def SIGINT_handler(sig, stack):
     Ensure a cleanup before exiting the program
     """
 
-    print('Cleaning up')
-    GPIO.cleanup()
     print('Quit...')
     sys.exit()
 
@@ -54,10 +53,12 @@ def SIGUSR_handler(sig, stack):
     """
 
     if sig==signal.SIGUSR1:
-        GPIO.output(17, GPIO.HIGH)
+        with gpio.pin(PIN, direction=gpio.Out) as p:
+            p.value = 1
         print('Forced state : CoffeePot ON')
     elif sig==signal.SIGUSR2:
-        GPIO.output(17, GPIO.LOW)
+        with gpio.pin(PIN, direction=gpio.Out) as p:
+            p.value = 0
         print('Forced state : CoffeePot OFF')
 
 
