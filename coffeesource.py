@@ -27,17 +27,14 @@
 Test program to link twitter and a coffee pot through a RPi.
 """
 
-try:
-    import RPi.GPIO as GPIO
-except RuntimeError:
-    print("Ok, you should run this shitty script as root.")
-
 import os
 import sys
 import re
-import twitter
 import time
 import signal
+
+from twitter import Twitter, OAuth
+import quick2wire.gpio as gpio
 
 from sig_handlers import *
 from settings import *
@@ -47,31 +44,28 @@ RE_STOP = re.compile(RE_STOP)
 def setup_gpio():
     """ Setup function """
 
-    # use the P1.17 as the out pin (default to LOW)
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(17, GPIO.OUT, initial=GPIO.LOW)
+    return gpio.pins.pin(PIN, direction=gpio.Out)
 
 
-def do_coffee(api, last_id):
+def do_coffee(pin, api, last_id):
     """Must i send a signal to the coffee pot ?"""
-    mention = api.GetMentions()[:1]
+    mention = api.statuses.mentions_timeline()[0]
 
+    if mention['id_str'] != last_id:
 
-    if mention[0].id != last_id:
-
-        last_id  = mention[0].id
-        name = mention[0].user._screen_name
+        last_id  = mention['id_str']
+        name = mention['user']['screen_name']
 
         if name in MASTERS:
 
-            if RE_START.search(mention[0].text):
+            if RE_START.search(mention.text):
                 print("Hey ! Let's make coffee !")
-                GPIO.output(17, GPIO.HIGH)
+                pin.value = 1
                 return last_id
 
-            elif RE_STOP.search(mention[0].text):
+            elif RE_STOP.search(mention.text):
                 print("Yeah ! Coffee's ready !")
-                GPIO.output(17, GPIO.LOW)
+                pin.value = 0
                 return last_id
     else:
         print("Waiting for a tweet...")
@@ -86,16 +80,16 @@ def main():
 
     # let's create an instance of the api
     try:
-        api = twitter.Api(consumer_key=CONSUMER_KEY,\
-                          consumer_secret=CONSUMER_SECRET,\
-                          access_token_key=TOKEN_KEY,\
-                          access_token_secret=TOKEN_SECRET)
+        api = Twitter(
+            auth=OAuth(TOKEN_KEY, TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET),
+            api_version='1.1'
+        )
         print("Connected to the twitter API")
     except:
         print("Failed to load twitter API")
         sys.exit()
 
-    setup_gpio()
+    pin = setup_gpio()
 
     # print instructions
     print("""
@@ -124,9 +118,9 @@ CTRL-C or $ sudo kill -2 {0}""".format(os.getpid()))
 
 
     print("Entering main loop....")
-    last_id = 0
+    last_id = '0'
     while 1:
-        last_id = do_coffee(api, last_id)
+        last_id = do_coffee(pin, api, last_id)
         time.sleep(UPDATE_TIME)
     return 0
 
