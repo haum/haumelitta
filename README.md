@@ -35,13 +35,15 @@ Here's what you need...
 You'll need several python modules, just grab the `setup.sh` script and run :
 
     $ sudo su
-    # sudo apt-get install python
+    # sudo apt-get install python3
     # ./setup.sh
 
 Modules are :
 
-- `RPi.GPIO`
-- `python-twitter`
+- `quick2wire`
+- `twitter`
+
+To setup the `quick2wire` module, follow the steps described [here](https://github.com/quick2wire/quick2wire-python-api).
 
 Running
 -------
