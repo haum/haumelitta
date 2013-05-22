@@ -29,11 +29,18 @@ Global variable....
 
 I know, globals are terrible things that we all shall fear...
 
-But, you know, here, global is related to a physical I/O pin that won't vanish.
+But, you know, here, globals are related to physical I/O pin that won't vanish, or locks.
 It's really lighter to use global here instead of a singleton for example....
 """
 
-global coffee_pin = 0
+import threading
 
+# gpio.pins.Pin to coffeepot
+global coffee_pin
+coffee_pin = 0
+
+# can we commute the pin
+global LK_commutable
+LK_commutable = threading.Lock()
 
 
