@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding:utf8 -*-
 #
-# testIO.py 
+# testIO.py
 #
 # Copyright © 2013 jerome breheret (@jlbl_72) jerome@jblb.no-ip.com
 #
@@ -27,7 +27,7 @@
 Test program to use I2C io on  a RPi.
 """
 
-import select 			
+import select
 import quick2wire.i2c as i2c	# import Quick2Wire I2C API
 
 address = 0x38			# adresse of PCF8574 8-BIT I/O EXPANDER
