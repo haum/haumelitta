@@ -47,6 +47,7 @@ To setup the `quick2wire` module, follow the steps described [here](https://gith
 
 The easiest way to get started is to create a new virtualenv then run from inside :
 
+    $ mkvirtualenv haumelitta
     $ pip install -r requirements.txt
 
 Running
@@ -56,7 +57,8 @@ Connect your static relay to commute on pin 17 (port 1 on Pi).
 
 Run :
 
-    $ sudo python coffeesource.py
+    $ workon haumelitta
+    $ python coffeesource.py
 
 Control instructions will be written in the console.
 
