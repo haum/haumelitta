@@ -1,0 +1,272 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:Conn-raspberry
+EELAYER 24 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date "22 may 2013"
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L PBD-26 J?
+U 1 1 519C8CE6
+P 3300 2700
+F 0 "J?" H 3300 3400 60  0000 C CNN
+F 1 "PBD-26" V 3300 2700 50  0000 C CNN
+F 2 "" H 3300 2700 60  0000 C CNN
+F 3 "" H 3300 2700 60  0000 C CNN
+	1    3300 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L PCF8574 U?
+U 1 1 519C8D3E
+P 5950 2700
+F 0 "U?" H 6220 3400 60  0000 C CNN
+F 1 "PCF8574" H 6340 2002 60  0000 C CNN
+F 2 "" H 5950 2700 60  0000 C CNN
+F 3 "" H 5950 2700 60  0000 C CNN
+	1    5950 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L BC237 Q?
+U 1 1 519C8DCD
+P 7800 3150
+F 0 "Q?" H 8000 3050 50  0000 C CNN
+F 1 "BC237" H 8050 3300 50  0000 C CNN
+F 2 "TO92-EBC" H 7990 3150 30  0001 C CNN
+F 3 "~" H 7800 3150 60  0000 C CNN
+	1    7800 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW?
+U 1 1 519C8E21
+P 7700 5100
+F 0 "SW?" H 7850 5210 50  0000 C CNN
+F 1 "SW_PUSH" H 7700 5020 50  0000 C CNN
+F 2 "~" H 7700 5100 60  0000 C CNN
+F 3 "~" H 7700 5100 60  0000 C CNN
+	1    7700 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW?
+U 1 1 519C8E30
+P 7700 5550
+F 0 "SW?" H 7850 5660 50  0000 C CNN
+F 1 "SW_PUSH" H 7700 5470 50  0000 C CNN
+F 2 "~" H 7700 5550 60  0000 C CNN
+F 3 "~" H 7700 5550 60  0000 C CNN
+	1    7700 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW?
+U 1 1 519C8E3F
+P 7700 4650
+F 0 "SW?" H 7850 4760 50  0000 C CNN
+F 1 "SW_PUSH" H 7700 4570 50  0000 C CNN
+F 2 "~" H 7700 4650 60  0000 C CNN
+F 3 "~" H 7700 4650 60  0000 C CNN
+	1    7700 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW?
+U 1 1 519C8E4E
+P 8750 5100
+F 0 "SW?" H 8900 5210 50  0000 C CNN
+F 1 "SW_PUSH" H 8750 5020 50  0000 C CNN
+F 2 "~" H 8750 5100 60  0000 C CNN
+F 3 "~" H 8750 5100 60  0000 C CNN
+	1    8750 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_PUSH SW?
+U 1 1 519C8E5D
+P 6350 5100
+F 0 "SW?" H 6500 5210 50  0000 C CNN
+F 1 "SW_PUSH" H 6350 5020 50  0000 C CNN
+F 2 "~" H 6350 5100 60  0000 C CNN
+F 3 "~" H 6350 5100 60  0000 C CNN
+	1    6350 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 519C8E6C
+P 7250 3150
+F 0 "R?" V 7330 3150 40  0000 C CNN
+F 1 "R" V 7257 3151 40  0000 C CNN
+F 2 "~" V 7180 3150 30  0000 C CNN
+F 3 "~" H 7250 3150 30  0000 C CNN
+	1    7250 3150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L R R?
+U 1 1 519C8E7B
+P 7900 2500
+F 0 "R?" V 7980 2500 40  0000 C CNN
+F 1 "R" V 7907 2501 40  0000 C CNN
+F 2 "~" V 7830 2500 30  0000 C CNN
+F 3 "~" H 7900 2500 30  0000 C CNN
+	1    7900 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 519C8E8A
+P 8300 2500
+F 0 "R?" V 8380 2500 40  0000 C CNN
+F 1 "R" V 8307 2501 40  0000 C CNN
+F 2 "~" V 8230 2500 30  0000 C CNN
+F 3 "~" H 8300 2500 30  0000 C CNN
+	1    8300 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED D?
+U 1 1 519C8E99
+P 7900 1850
+F 0 "D?" H 7900 1950 50  0000 C CNN
+F 1 "LED" H 7900 1750 50  0000 C CNN
+F 2 "~" H 7900 1850 60  0000 C CNN
+F 3 "~" H 7900 1850 60  0000 C CNN
+	1    7900 1850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L CONN_2 P?
+U 1 1 519C8EA8
+P 8650 1850
+F 0 "P?" V 8600 1850 40  0000 C CNN
+F 1 "CONN_2" V 8700 1850 40  0000 C CNN
+F 2 "~" H 8650 1850 60  0000 C CNN
+F 3 "~" H 8650 1850 60  0000 C CNN
+	1    8650 1850
+	1    0    0    -1  
+$EndComp
+Wire Bus Line
+	2350 1550 2350 2500
+Wire Bus Line
+	5000 1550 5000 3550
+Entry Wire Line
+	5000 3050 5100 3150
+Entry Wire Line
+	5000 2800 5100 2900
+Entry Wire Line
+	5000 2250 5100 2350
+Entry Wire Line
+	5000 2150 5100 2250
+Wire Wire Line
+	5300 2250 5100 2250
+Wire Wire Line
+	5300 2350 5100 2350
+Wire Wire Line
+	5300 2900 5100 2900
+Wire Wire Line
+	5100 3150 5300 3150
+Entry Wire Line
+	2350 2000 2450 2100
+Entry Wire Line
+	2350 2100 2450 2200
+Entry Wire Line
+	2350 2200 2450 2300
+Entry Wire Line
+	2350 2300 2450 2400
+Wire Wire Line
+	2650 2100 2450 2100
+Wire Wire Line
+	2450 2200 2650 2200
+Wire Wire Line
+	2450 2300 2650 2300
+Wire Wire Line
+	2450 2400 2650 2400
+Entry Wire Line
+	6800 3150 6900 3250
+Wire Bus Line
+	6900 3250 6900 3550
+Wire Bus Line
+	5000 3550 7800 3550
+Wire Wire Line
+	6800 3150 6600 3150
+Wire Bus Line
+	4350 1550 4350 3250
+Entry Wire Line
+	4250 2300 4350 2200
+Wire Wire Line
+	3950 2300 4250 2300
+Entry Wire Line
+	2350 2500 2450 2600
+Wire Wire Line
+	2650 2600 2450 2600
+Entry Wire Line
+	6900 3250 7000 3150
+Entry Wire Line
+	7800 3550 7900 3450
+Wire Wire Line
+	7500 3150 7600 3150
+Wire Wire Line
+	7900 2950 7900 2750
+Wire Wire Line
+	7900 2750 8300 2750
+Wire Wire Line
+	7900 2250 7900 2050
+Wire Wire Line
+	8300 2250 8300 1950
+Wire Wire Line
+	7900 1650 8300 1650
+Wire Wire Line
+	8300 1650 8300 1750
+Wire Wire Line
+	7900 3350 7900 3450
+Entry Wire Line
+	7800 1550 7900 1650
+Wire Bus Line
+	7800 1550 2350 1550
+Entry Wire Line
+	4250 2100 4350 2000
+Wire Wire Line
+	3950 2100 4250 2100
+$EndSCHEMATC
