@@ -31,7 +31,7 @@ import threading
 import logging
 import sys
 
-from globals import coffee_pin
+from globals import *
 from settings import *
 
 class TwitterHandler(threading.Thread):
@@ -48,9 +48,9 @@ class TwitterHandler(threading.Thread):
                 auth=OAuth(TOKEN_KEY, TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET),
                 api_version='1.1'
             )
-            logging.info("Connected to Twitter API")
+            logging.info("Twitter > Connected to Twitter API")
         except:
-            logging.critical("Failed to load twitter API")
+            logging.critical("Twitter > Failed to load twitter API")
             sys.exit()
 
         # compile regexps
@@ -84,13 +84,15 @@ class TwitterHandler(threading.Thread):
                 if name in MASTERS:
 
                     if self.RE_START.search(mention['text']):
-                        logging.info("Hey ! Let's make coffee !")
-                        coffee_pin.value = 1
+                        with LK_commutable:
+                            logging.info("Twitter > Hey ! Let's make coffee !")
+                            coffee_pin.value = 1
 
                     elif self.RE_STOP.search(mention['text']):
-                        logging.info("Yeah ! Coffee's ready !")
-                        coffee_pin.value = 0
+                        with LK_commutable:
+                            logging.info("Twitter > Yeah ! Coffee's ready !")
+                            coffee_pin.value = 0
             else:
-                logging.info("Waiting for a tweet...")
+                logging.info("Twitter > Waiting for a tweet...")
 
 
