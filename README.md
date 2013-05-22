@@ -45,6 +45,10 @@ Modules are:
 
 To setup the `quick2wire` module, follow the steps described [here](https://github.com/quick2wire/quick2wire-python-api).
 
+The easiest way to get started is to create a new virtualenv then run from inside :
+
+    $ pip install -r requirements.txt
+
 Running
 -------
 
