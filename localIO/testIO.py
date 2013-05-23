@@ -37,7 +37,7 @@ with i2c.I2CMaster() as bus:
 	bus.transaction(
 		i2c.writing_bytes(address, 0xFF))
 
-while true:
+while True:
 	with i2c.I2CMaster() as bus:
 	#read values from IO expander
 		read_results = bus.transaction(
