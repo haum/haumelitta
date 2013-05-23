@@ -37,6 +37,9 @@ from globals import *
 from settings import *
 
 I2C_ADDR = 0x38         # adresse of PCF8574 8-BIT I/O EXPANDER
+I2C_INT =  7            # pin 7 handle I2C interupt
+# I2C_INTERRUPT from quick2wire.??? (gpio ?)
+
 
 class GPIOHandler(threading.Thread):
     """ GPIO Handler thread
