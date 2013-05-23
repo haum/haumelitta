@@ -30,6 +30,9 @@ Twitter handler thread for HAUMelitta
 import threading
 import logging
 import sys
+import re
+
+from twitter import Twitter, OAuth
 
 from globals import *
 from settings import *
@@ -41,6 +44,8 @@ class TwitterHandler(threading.Thread):
 
     def __init__(self):
         """ Constructor """
+
+        threading.Thread.__init__(self)
 
         # initialize API or die.
         try:
