@@ -59,10 +59,11 @@ class GPIOHandler(threading.Thread):
 
         # setup interrupt signal
         self.int_pin = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
+        self.int_pin.open()
 
         self.poller = select.epoll()
         # setup pin as a readable and edge triggered
-        self.poller.register(self.int_pin, select.EPOLLIN | select.EPOLLET)
+        self.poller.register(self.int_pin, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Exxx for python3
 
 
     def run(self):
