@@ -91,12 +91,12 @@ class TwitterHandler(threading.Thread):
                     if self.RE_START.search(mention['text']):
                         with LK_commutable:
                             logging.info("Twitter > Hey ! Let's make coffee !")
-                            coffee_pin.Instance().pin.value = 1
+                            CoffeePin.Instance().pin.value = 1
 
                     elif self.RE_STOP.search(mention['text']):
                         with LK_commutable:
                             logging.info("Twitter > Yeah ! Coffee's ready !")
-                            coffee_pin.Instance().pin.value = 0
+                            CoffeePin.Instance().pin.value = 0
             else:
                 logging.info("Twitter > Waiting for a tweet...")
 

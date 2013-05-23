@@ -42,10 +42,6 @@ class CoffeePin:
     def __init__(self):
         self.pin = 0
 
-# gpio.pins.Pin to coffeepot
-global coffee_pin
-coffee_pin = CoffeePin()
-
 # can we commute the pin
 global LK_commutable
 LK_commutable = threading.Lock()
