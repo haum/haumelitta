@@ -34,10 +34,17 @@ It's really lighter to use global here instead of a singleton for example....
 """
 
 import threading
+from singleton import Singleton
+
+@Singleton
+class CoffeePin:
+
+    def __init__(self):
+        self.pin = 0
 
 # gpio.pins.Pin to coffeepot
 global coffee_pin
-coffee_pin = 0
+coffee_pin = CoffeePin()
 
 # can we commute the pin
 global LK_commutable

@@ -46,7 +46,7 @@ def SIGINT_handler(sig, stack):
     logging.info('Quit...')
 
     with LK_commutable:
-        coffee_pin.close()
+        coffee_pin.Instance().pin.close()
 
     sys.exit()
 
@@ -62,14 +62,14 @@ def SIGUSR_handler(sig, stack):
     if sig==signal.SIGUSR1:
 
         with LK_commutable:
-            coffee_pin.value = 1
+            coffee_pin.Instance().pin.value = 1
 
         logging.info('Signals > Forced state : CoffeePot ON')
 
     elif sig==signal.SIGUSR2:
 
         with LK_commutable:
-            coffee_pin.value = 0
+            coffee_pin.Instance().pin.value = 0
 
         logging.info('Signals > Forced state : CoffeePot OFF')
 

@@ -42,8 +42,8 @@ def main():
 
     # Open GPIO pin
     with LK_commutable:
-        coffee_pin = gpio.pins.pin(PIN, direction=gpio.Out)
-        coffee_pin.open()
+        coffee_pin.Instance().pin = gpio.pins.pin(PIN, direction=gpio.Out)
+        coffee_pin.Instance().pin.open()
 
     # setup interrupt handler for SIGINT
     # setup forced state signals
