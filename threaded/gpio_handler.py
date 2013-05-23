@@ -52,17 +52,17 @@ class GPIOHandler(threading.Thread):
 
         # setup port expander
         # writing 0xFF sets all lines as input
-        # logical 1 appears when a line is driven to ground
+        # logical 0 appears when a line is driven to ground
         with i2c.I2CMaster() as bus:
             bus.transaction(
                 i2c.writing_bytes(I2C_ADDR, 0xFF))
 
         # setup interrupt signal
-        self.int = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
+        self.int_pin = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
 
         self.poller = select.epoll()
         # setup pin as a readable and edge triggered
-        self.poller.register(self.int, select.POLLIN | select.POLLET)
+        self.poller.register(self.int_pin, select.EPOLLIN | select.EPOLLET)
 
 
     def run(self):
