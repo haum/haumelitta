@@ -36,7 +36,7 @@ import quick2wire.gpio as gpio
 from globals import *
 from settings import *
 
-I2C_ADDR = 0x38			# adresse of PCF8574 8-BIT I/O EXPANDER
+I2C_ADDR = 0x38         # adresse of PCF8574 8-BIT I/O EXPANDER
 
 class GPIOHandler(threading.Thread):
     """ GPIO Handler thread
@@ -77,9 +77,9 @@ class GPIOHandler(threading.Thread):
         """ Called on interruption after a change on I2C expander
         This function reads all I2C port to find what changed
         """
-		with i2c.I2CMaster() as bus:
-			#read values from IO expander
-			read_results = bus.transaction(i2c.reading(address, 1))
-			IOexp_results = read_results[0][0]
-			print("%02x" % IOexp_results)
+        with i2c.I2CMaster() as bus:
+            #read values from IO expander
+            read_results = bus.transaction(i2c.reading(address, 1))
+            IOexp_results = read_results[0][0]
+            print("%02x" % IOexp_results)
 
