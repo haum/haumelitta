@@ -55,7 +55,7 @@ class GPIOHandler(threading.Thread):
                 i2c.writing_bytes(I2C_ADDR, 0xFF))
 
         # setup interrupt signal
-        self.int = gpio.pins.Pin(I2C_INT, direction=In, interrupt=Rising)
+        self.int = gpio.pins.pin(I2C_INT, direction=In, interrupt=Rising)
 
         self.poller = select.epoll()
         # setup pin as a readable and edge triggered
