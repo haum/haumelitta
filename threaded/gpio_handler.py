@@ -36,6 +36,7 @@ import quick2wire.gpio as gpio
 from globals import *
 from settings import *
 
+I2C_ADDR = 0x38			# adresse of PCF8574 8-BIT I/O EXPANDER
 
 class GPIOHandler(threading.Thread):
     """ GPIO Handler thread
