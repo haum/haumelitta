@@ -34,6 +34,7 @@ import quick2wire.gpio as gpio
 from settings import *
 from globals import *
 from twitter_handler import TwitterHandler
+from gpio_handler import *
 from sig_handlers import *
 
 
@@ -54,6 +55,9 @@ def main():
     # init. twitter thread and start it
     twitter_thread = TwitterHandler()
     twitter_thread.start()
-
+	#init GPIO thread & start
+	IO_thread = GPIOHandler()
+	IO_thread.start()
+	
 
 if __name__=='__main__': main()
