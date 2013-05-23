@@ -38,10 +38,11 @@ with i2c.I2CMaster() as bus:
 		i2c.writing_bytes(address, 0xFF))
 
 while true:
-#read values from IO expander
-	read_results = bus.transaction(
-        	i2c.reading(address, 1))
+	with i2c.I2CMaster() as bus:
+	#read values from IO expander
+		read_results = bus.transaction(
+				i2c.reading(address, 1))
 
-	IOexp_results = read_results[0][0]
-	print("%02x" % IOexp_results)
+		IOexp_results = read_results[0][0]
+		print("%02x" % IOexp_results)
 
