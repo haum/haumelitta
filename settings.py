@@ -9,20 +9,22 @@
 
 
 # coffee pot twitter API key
-CONSUMER_KEY = ''
+CONSUMER_KEY = 'BcNaAoasHdRJvcy1iCYw'
 
 # coffee pot twitter api secret
-CONSUMER_SECRET = ''
+CONSUMER_SECRET = 'YlHGnhc8epNPt1zlocWAWhPPCXKXp0uiW1wpoIXj1qs'
 
 # API Token
-TOKEN_KEY = ''
+TOKEN_KEY = '1431541796-u5b2SpNKJq4zV4vLmmj7DYVOa77Ijc9Ewexkk4r'
 
 # Token  secret
-TOKEN_SECRET = ''
+TOKEN_SECRET = 'PPeHIZ6foEZ356sEfnKhcXajiGFoDJjNK3k7SlX94'
 
 # coffeepot's master twitter name (list of unicode str)
 MASTERS = [
-    u'',
+    'jblb_72',
+    'haum72',
+    'matael',
 ]
 
 # pattern to start coffeepot

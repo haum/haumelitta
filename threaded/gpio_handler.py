@@ -50,6 +50,8 @@ class GPIOHandler(threading.Thread):
     def __init__(self):
         """ Constructor """
 
+        threading.Thread.__init__(self)
+
         # setup port expander
         # writing 0xFF sets all lines as input
         # logical 0 appears when a line is driven to ground
@@ -58,12 +60,12 @@ class GPIOHandler(threading.Thread):
                 i2c.writing_bytes(I2C_ADDR, 0xFF))
 
         # setup interrupt signal
-        self.int_pin = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
-        self.int_pin.open()
+        self.int = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
+        self.int.open()
 
         self.poller = select.epoll()
         # setup pin as a readable and edge triggered
-        self.poller.register(self.int_pin, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
+        self.poller.register(self.int, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
 
 
     def run(self):
