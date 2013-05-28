@@ -31,7 +31,7 @@ def main():
 
 	# setup interrupt signal
 	# interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
-	interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Falling)
+	interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Falling, pull=gpio.PullUp )
 	interupt.open()
 
 	epoller1 = select.epoll()
