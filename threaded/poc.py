@@ -15,24 +15,24 @@ def main():
         # writing 0xFF sets all lines as input
         # logical 0 appears when a line is driven to ground
         # INTERUPT pin is driving to ground where IO pin change
-        with i2c.I2CMaster() as bus:
-            bus.transaction(
-                i2c.writing_bytes(I2C_ADDR, 0xFF))
+     with i2c.I2CMaster() as bus:
+     	bus.transaction(
+        i2c.writing_bytes(I2C_ADDR, 0xFF))
 
         # setup interrupt signal
-        interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
-        interupt.open()
+     interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
+     interupt.open()
 
-        epoller1 = select.epoll()
-        # setup pin as a readable and edge triggered
-        epoller1.register(interupt, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
+     epoller1 = select.epoll()
+     # setup pin as a readable and edge triggered
+     epoller1.register(interupt, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
 
-        while True:
-            events = epoller1.poll()
+     while True:
+     	events = epoller1.poll()
 
-            for fno,ev in events:
-                if fno == self.pin.fileno():
-                    self.handle_i2c_interrupt()
+        for fno,ev in events:
+        	if fno == self.pin.fileno():
+            	self.handle_i2c_interrupt()
 
     def handle_i2c_interrupt(self):
         """ Called on interruption after a change on I2C expander
