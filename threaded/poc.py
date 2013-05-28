@@ -9,6 +9,16 @@ import select
 I2C_ADDR = 0x38		 # adresse of PCF8574 8-BIT I/O EXPANDER
 I2C_INT =  7			# pin 7 handle I2C interupt
 
+def handle_i2c_interrupt(self):
+		""" Called on interruption after a change on I2C expander
+		This function reads all I2C port to find what changed
+		"""
+		with i2c.I2CMaster() as bus:
+			#read values from IO expander
+			read_results = bus.transaction(i2c.reading(address, 1))
+			IOexp_results = read_results[0][0]
+			print("%02x" % IOexp_results)
+
 def main():
 	""" main program """
 	# setup I2C port expander
@@ -33,15 +43,5 @@ def main():
 		for fno,ev in events:
 			if fno == interupt.fileno():
 				handle_i2c_interrupt()
-
-	def handle_i2c_interrupt(self):
-		""" Called on interruption after a change on I2C expander
-		This function reads all I2C port to find what changed
-		"""
-		with i2c.I2CMaster() as bus:
-			#read values from IO expander
-			read_results = bus.transaction(i2c.reading(address, 1))
-			IOexp_results = read_results[0][0]
-			print("%02x" % IOexp_results)
 
 if __name__=='__main__': main()
