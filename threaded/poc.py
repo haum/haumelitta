@@ -20,6 +20,18 @@ def handle_i2c_interrupt():
 			print("%02x" % IOexp_results)
 
 def main():
+	def SIGINT_handler(sig, stack):
+	"""
+	Handler for SIGINT
+	Ensure a cleanup before exiting the program
+	"""
+		print('Quit...')
+		interupt.close()
+		sys.exit()
+
+    # setup interrupt handler for SIGTERM
+    signal.signal(signal.SIGINT, SIGINT_handler)
+
 	""" main program """
 	# setup I2C port expander
 	# writing 0xFF sets all lines as input
