@@ -5,6 +5,7 @@
 import quick2wire.i2c as i2c
 import quick2wire.gpio as gpio
 import select
+import signal
 
 I2C_ADDR = 0x38			# adresse of PCF8574 8-BIT I/O EXPANDER
 I2C_INT =  7			# pin 7 handle I2C interupt
