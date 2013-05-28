@@ -21,10 +21,10 @@ def handle_i2c_interrupt():
 
 def main():
 	def SIGINT_handler(sig, stack):
-	"""
-	Handler for SIGINT
-	Ensure a cleanup before exiting the program
-	"""
+		"""
+		Handler for SIGINT
+		Ensure a cleanup before exiting the program
+		"""
 		print('Quit...')
 		interupt.close()
 		sys.exit()
