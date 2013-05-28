@@ -31,8 +31,8 @@ def main():
 		events = epoller1.poll()
 
 		for fno,ev in events:
-			if fno == self.pin.fileno():
-				self.handle_i2c_interrupt()
+			if fno == interupt.fileno():
+				handle_i2c_interrupt()
 
 	def handle_i2c_interrupt(self):
 		""" Called on interruption after a change on I2C expander
