@@ -30,7 +30,7 @@ def main():
 		sys.exit()
 
     # setup interrupt handler for SIGTERM
-    signal.signal(signal.SIGINT, SIGINT_handler)
+	signal.signal(signal.SIGINT, SIGINT_handler)
 
 	""" main program """
 	# setup I2C port expander
