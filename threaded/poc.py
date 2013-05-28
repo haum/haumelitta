@@ -26,14 +26,14 @@ def main():
         epoller1 = select.epoll()
         # setup pin as a readable and edge triggered
         epoller1.register(interupt, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
- 
+
         while True:
             events = epoller1.poll()
 
             for fno,ev in events:
                 if fno == self.pin.fileno():
                     self.handle_i2c_interrupt()
-                    
+
     def handle_i2c_interrupt(self):
         """ Called on interruption after a change on I2C expander
         This function reads all I2C port to find what changed
