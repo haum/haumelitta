@@ -29,8 +29,9 @@ def main():
 		bus.transaction(
 		i2c.writing_bytes(I2C_ADDR, 0xFF))
 
-		# setup interrupt signal
-	interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
+	# setup interrupt signal
+	# interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
+	interupt = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Falling)
 	interupt.open()
 
 	epoller1 = select.epoll()
