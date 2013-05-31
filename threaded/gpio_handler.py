@@ -60,12 +60,12 @@ class GPIOHandler(threading.Thread):
                 i2c.writing_bytes(I2C_ADDR, 0xFF))
 
         # setup interrupt signal
-        self.int = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Rising)
-        self.int.open()
+        self.pin = gpio.pins.pin(I2C_INT, direction=gpio.In, interrupt=gpio.Falling, pull=gpio.PullUp)
+        self.pin.open()
 
         self.poller = select.epoll()
         # setup pin as a readable and edge triggered
-        self.poller.register(self.int, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
+        self.poller.register(self.pin, select.EPOLLIN | select.EPOLLET) # EPOLLIN & EPOLLET Edge for python3
 
 
     def run(self):
@@ -84,7 +84,7 @@ class GPIOHandler(threading.Thread):
         """
         with i2c.I2CMaster() as bus:
             #read values from IO expander
-            read_results = bus.transaction(i2c.reading(address, 1))
+            read_results = bus.transaction(i2c.reading(I2C_ADDR, 1))
             IOexp_results = read_results[0][0]
             print("%02x" % IOexp_results)
 
