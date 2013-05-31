@@ -31,11 +31,19 @@ import quick2wire.gpio as gpio
 
 from settings import COFFEE_PIN
 
+# 1 => ON
+# 0 => OFF
+global on = 1
+
 def activate():
     """ Activate the coffee pot """
+
+    global on
+
     try:
         with gpio.pins.pin(COFFEE_PIN, direction=gpio.Out) as p:
             p.value = 1
+        on = 1
         return 0
     except:
         return 1
@@ -43,9 +51,18 @@ def activate():
 
 def desactivate():
     """ Desctivate the coffee pot """
+
+    global on
+
     try:
         with gpio.pins.pin(COFFEE_PIN, direction=gpio.Out) as p:
             p.value = 0
+        on = 0
         return 0
     except:
         return 1
+
+
+def is_on():
+    global on
+    return on
