@@ -41,11 +41,6 @@ from sig_handlers import *
 def main():
     """ main program """
 
-    # Open GPIO pin
-#    with LK_commutable:
-#        CoffeePin.Instance().pin = gpio.pins.pin(PIN, direction=gpio.Out)
-#        CoffeePin.Instance().pin.open()
-
     # setup interrupt handler for SIGINT
     # setup forced state signals
     signal.signal(signal.SIGINT, SIGINT_handler)
@@ -53,8 +48,8 @@ def main():
     signal.signal(signal.SIGUSR2, SIGUSR_handler)
 
     # init. twitter thread and start it
-    # twitter_thread = TwitterHandler()
-    # twitter_thread.start()
+    twitter_thread = TwitterHandler()
+    twitter_thread.start()
     #init GPIO thread & start
     IO_thread = GPIOHandler()
     IO_thread.start()
