@@ -48,8 +48,8 @@ def main():
     signal.signal(signal.SIGUSR2, SIGUSR_handler)
 
     # init. twitter thread and start it
-    # twitter_thread = TwitterHandler()
-    # twitter_thread.start()
+    twitter_thread = TwitterHandler()
+    twitter_thread.start()
     #init GPIO thread & start
     IO_thread = GPIOHandler()
     IO_thread.start()
