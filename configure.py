@@ -4,11 +4,11 @@
 
 import os
 
-if os.path.exists("./setting.py"):
-	from settings import *
+#if os.path.exists("./setting.py"):
+#	from settings import *
 
 
-""" try:
-        import setting
+	try:
+		from setting import *
     except IOError:
         le reste fonction creation setting
