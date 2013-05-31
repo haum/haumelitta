@@ -28,6 +28,7 @@ Twitter handler thread for HAUMelitta
 """
 
 import threading
+import time
 import logging
 import sys
 import re
@@ -100,4 +101,5 @@ class TwitterHandler(threading.Thread):
             else:
                 logging.info("Twitter > Waiting for a tweet...")
 
+            time.sleep(5*60)
 
