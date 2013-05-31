@@ -80,24 +80,27 @@ class TwitterHandler(threading.Thread):
 
         while True:
 
-            mention = self.api.statuses.mentions_timeline()[0]
+            # runs only if coffeepot is off
+            if not cp.is_on():
 
-            if mention['id_str'] != self.last_id:
+                mention = self.api.statuses.mentions_timeline()[0]
 
-                self.last_id  = mention['id_str']
-                name = mention['user']['screen_name']
+                if mention['id_str'] != self.last_id:
 
-                if name in MASTERS:
+                    self.last_id  = mention['id_str']
+                    name = mention['user']['screen_name']
 
-                    if self.RE_START.search(mention['text']):
-                        logging.info("Twitter > Hey ! Let's make coffee !")
-                        cp.activate()
+                    if name in MASTERS:
 
-                    elif self.RE_STOP.search(mention['text']):
-                        logging.info("Twitter > Yeah ! Coffee's ready !")
-                        cp.desactivate()
-            else:
-                logging.info("Twitter > Waiting for a tweet...")
+                        if self.RE_START.search(mention['text']):
+                            logging.info("Twitter > Hey ! Let's make coffee !")
+                            cp.activate()
 
-            time.sleep(5*60)
+                        elif self.RE_STOP.search(mention['text']):
+                            logging.info("Twitter > Yeah ! Coffee's ready !")
+                            cp.desactivate()
+                else:
+                    logging.info("Twitter > Waiting for a tweet...")
+
+                time.sleep(5*60)
 
