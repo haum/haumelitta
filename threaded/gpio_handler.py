@@ -33,6 +33,7 @@ import threading
 import quick2wire.i2c as i2c
 import quick2wire.gpio as gpio
 
+import coffeepot as cp
 from settings import *
 
 # TO BE DELETED (INCLUDED IN settings.py)
@@ -85,6 +86,11 @@ class GPIOHandler(threading.Thread):
         with i2c.I2CMaster() as bus:
             #read values from IO expander
             read_results = bus.transaction(i2c.reading(I2C_ADDR, 1))
-            IOexp_results = read_results[0][0]
-            print("%02x" % IOexp_results)
+            result = read_results[0][0]
+
+            if 0x80&(result << BP_ON):
+                cp.activate()
+            elif 0x80&(result << BP_OFF):
+                cp.deactivate()
+
 
