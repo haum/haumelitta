@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding:utf8 -*-
 #
-# globals.py
+# coffeepot_control.py
 #
 # Copyright © 2013 Mathieu Gaborit (matael) <mathieu@matael.org>
 #
@@ -24,26 +24,28 @@
 #
 
 """
-Global variable....
-
-
-I know, globals are terrible things that we all shall fear...
-
-But, you know, here, globals are related to physical I/O pin that won't vanish, or locks.
-It's really lighter to use global here instead of a singleton for example....
+Functions to control coffeepot
 """
 
-import threading
-from singleton import Singleton
+import quick2wire.gpio as gpio
 
-@Singleton
-class CoffeePin:
+from settings import COFFEE_PIN
 
-    def __init__(self):
-        self.pin = 0
+def activate():
+    """ Activate the coffee pot """
+    try:
+        with gpio.pins.pin(COFFEE_PIN, direction=gpio.Out) as p:
+            p.value = 1
+        return 0
+    except:
+        return 1
 
-# can we commute the pin
-global LK_commutable
-LK_commutable = threading.Lock()
 
-
+def desactivate():
+    """ Desctivate the coffee pot """
+    try:
+        with gpio.pins.pin(COFFEE_PIN, direction=gpio.Out) as p:
+            p.value = 0
+        return 0
+    except:
+        return 1
