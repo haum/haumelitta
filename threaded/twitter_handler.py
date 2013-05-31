@@ -35,7 +35,7 @@ import re
 
 from twitter import Twitter, OAuth
 
-from globals import *
+import coffeepot as cp
 from settings import *
 
 class TwitterHandler(threading.Thread):
@@ -90,14 +90,12 @@ class TwitterHandler(threading.Thread):
                 if name in MASTERS:
 
                     if self.RE_START.search(mention['text']):
-                        with LK_commutable:
-                            logging.info("Twitter > Hey ! Let's make coffee !")
-                            CoffeePin.Instance().pin.value = 1
+                        logging.info("Twitter > Hey ! Let's make coffee !")
+                        cp.activate()
 
                     elif self.RE_STOP.search(mention['text']):
-                        with LK_commutable:
-                            logging.info("Twitter > Yeah ! Coffee's ready !")
-                            CoffeePin.Instance().pin.value = 0
+                        logging.info("Twitter > Yeah ! Coffee's ready !")
+                        cp.desactivate()
             else:
                 logging.info("Twitter > Waiting for a tweet...")
 
