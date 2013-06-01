@@ -10,7 +10,7 @@ import os
 
 try:
    	from setting import *
-except IOError:
+except ImportError:
 	"""
     	le reste fonction creation setting
 		
@@ -29,11 +29,12 @@ if os.path.exists("./setting.py"):
 	os.remove("./setting.py")
 
 # open file for write
-f = open("./setting.py",w)
-f.write('#! /usr/bin/env python')
-f.write('# -*- coding:utf8 -*-')
-f.write('#')
-f.write('TOKEN_KEY = ',input('twitter TOKEN_KEY: ')  )
+f = open("./setting.py",'w')
+f.write('#! /usr/bin/env python\n')
+f.write('# -*- coding:utf8 -*-\n')
+f.write('#\n\n')
+TOKEN_KEY = raw_input('twitter TOKEN_KEY: ')
+f.write("TOKEN_KEY = \'" + TOKEN_KEY + "\'\n" )
 
 
 
