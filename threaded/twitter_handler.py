@@ -61,7 +61,6 @@ class TwitterHandler(threading.Thread):
 
         # compile regexps
         self.RE_START = re.compile(RE_START)
-        self.RE_STOP = re.compile(RE_STOP)
 
         # init needed vars
         self.last_id = "0"
@@ -90,15 +89,10 @@ class TwitterHandler(threading.Thread):
                     self.last_id  = mention['id_str']
                     name = mention['user']['screen_name']
 
-                    if name in MASTERS:
+                    if name in MASTERS and self.RE_START.search(mention['text']):
+                        if cp.activate():
+                            logging.info('Twitter > Coffee pot activated')
 
-                        if self.RE_START.search(mention['text']):
-                            logging.info("Twitter > Hey ! Let's make coffee !")
-                            cp.activate()
-
-                        elif self.RE_STOP.search(mention['text']):
-                            logging.info("Twitter > Yeah ! Coffee's ready !")
-                            cp.desactivate()
                 else:
                     logging.info("Twitter > Waiting for a tweet...")
 
