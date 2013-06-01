@@ -27,6 +27,8 @@
 Functions to control coffeepot
 """
 
+import logging
+
 import quick2wire.gpio as gpio
 
 from settings import COFFEE_PIN
@@ -43,10 +45,11 @@ def activate():
     try:
         with gpio.pins.pin(COFFEE_PIN, direction=gpio.Out) as p:
             p.value = 1
+        logging.info("CoffeePot > State forced to ON")
         on = 1
-        return 0
-    except:
         return 1
+    except:
+        return 0
 
 
 def desactivate():
@@ -57,10 +60,11 @@ def desactivate():
     try:
         with gpio.pins.pin(COFFEE_PIN, direction=gpio.Out) as p:
             p.value = 0
+        logging.info("CoffeePot > State forced to OFF")
         on = 0
-        return 0
-    except:
         return 1
+    except:
+        return 0
 
 
 def is_on():
