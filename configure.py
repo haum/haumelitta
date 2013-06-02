@@ -4,8 +4,18 @@
 
 import os
 
-#if os.path.exists("./setting.py"):
-#	from settings import *
+#if not os.path.exists("./setting.py"):
+#		f = open("./setting.py",'w')
+#		f.write('#! /usr/bin/env python\n')
+#		f.write('# -*- coding:utf8 -*-\n')
+#		f.write('#\n\n')
+#try:
+#		from setting import TOKEN_KEY
+#except ImportError:
+#		
+#		TOKEN_KEY = raw_input('twitter TOKEN_KEY: ')
+#		f.write("TOKEN_KEY = \'" + TOKEN_KEY + "\'\n" )
+
 
 
 try:
