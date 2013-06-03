@@ -4,6 +4,7 @@
 #
 # read config from file, create if not exist
 #
+# ref of value needed http://pads.haum.org/p/haumelitta_settings
 
 import os
 
@@ -46,18 +47,18 @@ try:
 except ImportError:
         COFFEE_PIN = raw_input('COFFEE_PIN: ')
         with open('./setting.py', 'a') as f:
-            f.write("COFFEE_PIN = \'" + COFFEE_PIN + "\'\n\n" )
+            f.write("COFFEE_PIN = " + COFFEE_PIN + "\n" )
 
 try:
         from setting import I2C_ADDR
 except ImportError:
         I2C_ADDR = raw_input('I2C_ADDR: ')
         with open('./setting.py', 'a') as f:
-            f.write("I2C_ADDR = \'" + I2C_ADDR + "\'\n\n" )
+            f.write("I2C_ADDR = " + I2C_ADDR + "\n" )
 
 try:
         from setting import I2C_INT
 except ImportError:
         I2C_INT = raw_input('I2C_INT: ')
         with open('./setting.py', 'a') as f:
-            f.write("I2C_INT = \'" + I2C_INT + "\'\n\n" )
+            f.write("I2C_INT = " + I2C_INT + "\n" )
