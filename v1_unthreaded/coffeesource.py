@@ -34,7 +34,9 @@ import time
 import signal
 
 from twitter import Twitter, OAuth
-import quick2wire.gpio as gpio
+#import quick2wire.gpio as gpio
+
+from wiringpi import *
 
 from settings import *
 RE_START = re.compile(RE_START)
@@ -68,12 +70,14 @@ def do_coffee(pin, api, last_id):
 
             if RE_START.search(mention['text']):
                 print("Hey ! Let's make coffee !")
-                pin.value = 1
+                digitalWrite(pin, 1)
+                #pin.value = 1
                 return last_id
 
             elif RE_STOP.search(mention['text']):
                 print("Yeah ! Coffee's ready !")
-                pin.value = 0
+                #pin.value = 0
+                digitalWrite(pin, 0)
                 return last_id
     else:
         print("Waiting for a tweet...")
@@ -89,7 +93,7 @@ def main():
         """
 
         print('Quit...')
-        pin.close()
+        #pin.close()
         sys.exit()
 
 
@@ -102,10 +106,12 @@ def main():
         """
 
         if sig==signal.SIGUSR1:
-            pin.value = 1
+            #pin.value = 1
+            digitalWrite(pin, 1)
             print('Forced state : CoffeePot ON')
         elif sig==signal.SIGUSR2:
-            pin.value = 0
+            #pin.value = 0
+            digitalWrite(pin, 0)
             print('Forced state : CoffeePot OFF')
 
     # setup interrupt handler for SIGTERM
@@ -115,8 +121,10 @@ def main():
 
 
     # Open GPIO pin
-    pin = gpio.pins.pin(PIN, direction=gpio.Out)
-    pin.open()
+    #pin = gpio.pins.pin(PIN, direction=gpio.Out)
+    #pin.open()
+    pin = PIN
+    pinMode(pin, 1)
 
     # print instructions
     print("""
