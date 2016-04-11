@@ -38,6 +38,8 @@ from twitter import Twitter, OAuth
 
 from wiringpi import *
 
+wiringPiSetup()
+
 from settings import *
 RE_START = re.compile(RE_START)
 RE_STOP = re.compile(RE_STOP)
@@ -60,6 +62,7 @@ def connect_api():
 def do_coffee(pin, api, last_id):
     """Must i send a signal to the coffee pot ?"""
     mention = api.statuses.mentions_timeline()[0]
+    #mention = {'id_str': 'lol', 'text': 'lol', 'user': {'screen_name': 'lol'}}
 
     if mention['id_str'] != last_id:
 
@@ -159,6 +162,7 @@ CTRL-C or $ sudo kill -2 {0}""".format(os.getpid()))
     while 1:
         last_id = do_coffee(pin, api, last_id)
         time.sleep(UPDATE_TIME)
+        print('Updating...')
     return 0
 
 if __name__=='__main__':main()

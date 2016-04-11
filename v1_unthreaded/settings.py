@@ -5,26 +5,13 @@
 
 # Settings for twitter coffee pot system
 
-# PLEASE DO NOT SHARE TOKENS
-
-
-# coffee pot twitter API key
-CONSUMER_KEY = 'BcNaAoasHdRJvcy1iCYw'
-
-# coffee pot twitter api secret
-CONSUMER_SECRET = 'YlHGnhc8epNPt1zlocWAWhPPCXKXp0uiW1wpoIXj1qs'
-
-# API Token
-TOKEN_KEY = '1431541796-u5b2SpNKJq4zV4vLmmj7DYVOa77Ijc9Ewexkk4r'
-
-# Token  secret
-TOKEN_SECRET = 'PPeHIZ6foEZ356sEfnKhcXajiGFoDJjNK3k7SlX94'
-
 # coffeepot's master twitter name (list of unicode str)
 MASTERS = [
     'jblb_72',
     'haum72',
     'matael',
+    'seb_vallee',
+    'MicroJoe_'
 ]
 
 # pattern to start coffeepot
@@ -38,3 +25,8 @@ UPDATE_TIME = 60
 
 # RPi commutation pin (17 -> 0)
 PIN = 0
+
+try:
+    from settings_secret import *
+except ImportError:
+    pass

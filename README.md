@@ -40,10 +40,8 @@ You'll need several python modules, just grab the `setup.sh` script and run:
 
 Modules are:
 
-- `quick2wire`
+- `wiringpi`
 - `twitter`
-
-To setup the `quick2wire` module, follow the steps described [here](https://github.com/quick2wire/quick2wire-python-api).
 
 The easiest way to get started is to create a new virtualenv then run from inside :
 
