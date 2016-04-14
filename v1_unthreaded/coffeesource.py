@@ -110,11 +110,11 @@ def main():
 
         if sig==signal.SIGUSR1:
             #pin.value = 1
-            digitalWrite(pin, 1)
+            digitalWrite(pin, 0)
             print('Forced state : CoffeePot ON')
         elif sig==signal.SIGUSR2:
             #pin.value = 0
-            digitalWrite(pin, 0)
+            digitalWrite(pin, 1)
             print('Forced state : CoffeePot OFF')
 
     # setup interrupt handler for SIGTERM
@@ -154,15 +154,15 @@ Stop :
 
 CTRL-C or $ sudo kill -2 {0}""".format(os.getpid()))
 
-
     api = connect_api()
 
     print("Entering main loop....")
     last_id = '0'
     while 1:
-        last_id = do_coffee(pin, api, last_id)
         time.sleep(UPDATE_TIME)
+        last_id = do_coffee(pin, api, last_id)
         print('Updating...')
     return 0
 
-if __name__=='__main__':main()
+if __name__=='__main__':
+    main()
