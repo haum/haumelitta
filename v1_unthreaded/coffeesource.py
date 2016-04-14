@@ -128,6 +128,7 @@ def main():
     #pin.open()
     pin = PIN
     pinMode(pin, 1)
+    digitalWrite(pin, 1)
 
     # print instructions
     print("""
@@ -163,5 +164,6 @@ CTRL-C or $ sudo kill -2 {0}""".format(os.getpid()))
         print('Updating...')
     return 0
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     main()
