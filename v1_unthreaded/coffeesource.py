@@ -34,22 +34,25 @@ import time
 import signal
 
 from twitter import Twitter, OAuth
-#import quick2wire.gpio as gpio
+from wiringpi import pinMode, digitalWrite, wiringPiSetup
 
-from wiringpi import *
+import settings
 
 wiringPiSetup()
 
-from settings import *
-RE_START = re.compile(RE_START)
-RE_STOP = re.compile(RE_STOP)
+RE_START = re.compile(settings.RE_START)
+RE_STOP = re.compile(settings.RE_STOP)
 
 
 def connect_api():
 
     try:
         api = Twitter(
-            auth=OAuth(TOKEN_KEY, TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET),
+            auth=OAuth(
+                settings.TOKEN_KEY,
+                settings.TOKEN_SECRET,
+                settings.CONSUMER_KEY,
+                settings.CONSUMER_SECRET),
             api_version='1.1'
         )
         print("Connected to the twitter API")
@@ -62,24 +65,22 @@ def connect_api():
 def do_coffee(pin, api, last_id):
     """Must i send a signal to the coffee pot ?"""
     mention = api.statuses.mentions_timeline()[0]
-    #mention = {'id_str': 'lol', 'text': 'lol', 'user': {'screen_name': 'lol'}}
+    # mention = {'id_str': 'lol', 'text': 'lol', 'user': {'screen_name': 'lol'}}
 
     if mention['id_str'] != last_id:
 
-        last_id  = mention['id_str']
+        last_id = mention['id_str']
         name = mention['user']['screen_name']
 
-        if name in MASTERS:
+        if name in settings.MASTERS:
 
             if RE_START.search(mention['text']):
                 print("Hey ! Let's make coffee !")
                 digitalWrite(pin, 0)
-                #pin.value = 1
                 return last_id
 
             elif RE_STOP.search(mention['text']):
                 print("Yeah ! Coffee's ready !")
-                #pin.value = 0
                 digitalWrite(pin, 1)
                 return last_id
     else:
@@ -96,9 +97,7 @@ def main():
         """
 
         print('Quit...')
-        #pin.close()
         sys.exit()
-
 
     def SIGUSR_handler(sig, stack):
         """
@@ -108,12 +107,10 @@ def main():
         SIGUSR2 => switch off coffee pot
         """
 
-        if sig==signal.SIGUSR1:
-            #pin.value = 1
+        if sig == signal.SIGUSR1:
             digitalWrite(pin, 0)
             print('Forced state : CoffeePot ON')
-        elif sig==signal.SIGUSR2:
-            #pin.value = 0
+        elif sig == signal.SIGUSR2:
             digitalWrite(pin, 1)
             print('Forced state : CoffeePot OFF')
 
@@ -122,11 +119,8 @@ def main():
     signal.signal(signal.SIGUSR1, SIGUSR_handler)
     signal.signal(signal.SIGUSR2, SIGUSR_handler)
 
-
     # Open GPIO pin
-    #pin = gpio.pins.pin(PIN, direction=gpio.Out)
-    #pin.open()
-    pin = PIN
+    pin = settings.PIN
     pinMode(pin, 1)
     digitalWrite(pin, 1)
 
@@ -159,7 +153,7 @@ CTRL-C or $ sudo kill -2 {0}""".format(os.getpid()))
     print("Entering main loop....")
     last_id = '0'
     while 1:
-        time.sleep(UPDATE_TIME)
+        time.sleep(settings.UPDATE_TIME)
         last_id = do_coffee(pin, api, last_id)
         print('Updating...')
     return 0
