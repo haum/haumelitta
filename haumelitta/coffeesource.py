@@ -57,8 +57,9 @@ def connect_api():
         )
         print("Connected to the twitter API")
         return api
-    except:
-        print("Failed to load twitter API")
+    except Exception as e:
+        print("Failed to load twitter API:")
+        print(e)
         sys.exit()
 
 
