@@ -73,14 +73,14 @@ def do_coffee(pin, api, last_id):
 
             if RE_START.search(mention['text']):
                 print("Hey ! Let's make coffee !")
-                digitalWrite(pin, 1)
+                digitalWrite(pin, 0)
                 #pin.value = 1
                 return last_id
 
             elif RE_STOP.search(mention['text']):
                 print("Yeah ! Coffee's ready !")
                 #pin.value = 0
-                digitalWrite(pin, 0)
+                digitalWrite(pin, 1)
                 return last_id
     else:
         print("Waiting for a tweet...")
@@ -138,7 +138,6 @@ Process ID : {0}
 
 Commands :
 ----------
-
 - SIGINT : graceful stop (with cleanup)
 - SIGUSR1 : force state : coffeepot ON
 - SIGUSR2 : force state : coffeepot OFF
