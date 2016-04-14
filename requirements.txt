@@ -1,2 +1,4 @@
 wiringpi
 twitter==1.9.4
+twitter
+wiringpi
